@@ -41,20 +41,20 @@ public class ChessBoard extends JFrame {
         atualizarIcones();
         add(boardPanel);
     }
-    private void inicializarPecas() {
-        ImageIcon torrePreta = loadScaledIcon("src/Images/Black_Rook.png", 100, 100);
-        ImageIcon cavaloPreto = loadScaledIcon("src/Images/Black_Knight.png", 100, 100);
-        ImageIcon bispoPreto = loadScaledIcon("src/Images/Black_Bishop.png", 100, 100);
-        ImageIcon rainhaPreta = loadScaledIcon("src/Images/Black_Queen.png", 100, 100);
-        ImageIcon reiPreto = loadScaledIcon("src/Images/Black_King.png", 100, 100);
-        ImageIcon peaoPreto = loadScaledIcon("src/Images/Black_Pawn.png", 100, 100);
+     private void inicializarPecas() { //metodo loadScaledIcon n busca em src mas sim no out/production ... logo so colocar o nome da imagem
+        ImageIcon torrePreta = loadScaledIcon("Black_Rook.png", 100, 100);
+        ImageIcon cavaloPreto = loadScaledIcon("Black_Knight.png", 100, 100);
+        ImageIcon bispoPreto = loadScaledIcon("Black_Bishop.png", 100, 100);
+        ImageIcon rainhaPreta = loadScaledIcon("Black_Queen.png", 100, 100);
+        ImageIcon reiPreto = loadScaledIcon("Black_King.png", 100, 100);
+        ImageIcon peaoPreto = loadScaledIcon("Black_Pawn.png", 100, 100);
 
-        ImageIcon torreBranca = loadScaledIcon("src/Images/White_Rook.png", 100, 100);
-        ImageIcon cavaloBranco = loadScaledIcon("src/Images/White_Knight.png", 100, 100);
-        ImageIcon bispoBranco = loadScaledIcon("src/Images/White_Bishop.png", 100, 100);
-        ImageIcon rainhaBranca = loadScaledIcon("src/Images/White_Queen.png", 100, 100);
-        ImageIcon reiBranco = loadScaledIcon("src/Images/White_King.png", 100, 100);
-        ImageIcon peaoBranco = loadScaledIcon("src/Images/White_Pawn.png", 100, 100);
+        ImageIcon torreBranca = loadScaledIcon("White_Rook.png", 100, 100);
+        ImageIcon cavaloBranco = loadScaledIcon("White_Knight.png", 100, 100);
+        ImageIcon bispoBranco = loadScaledIcon("White_Bishop.png", 100, 100);
+        ImageIcon rainhaBranca = loadScaledIcon("White_Queen.png", 100, 100);
+        ImageIcon reiBranco = loadScaledIcon("White_King.png", 100, 100);
+        ImageIcon peaoBranco = loadScaledIcon("White_Pawn.png", 100, 100);
 
         pecas[0][0] = new TorrePreto(0, 0, torrePreta);
         pecas[0][1] = new CavaloPreto(0, 1, cavaloPreto);
@@ -96,6 +96,8 @@ public class ChessBoard extends JFrame {
         return squares[row][col];
     }
     public static ImageIcon loadScaledIcon(String path, int width, int height) {
-        return new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
+        URL img_url = ChessBoard.class.getResource("/Images/" + path); //metodo para pegar a /Images/ + path (so o nome da peca) e transforma em URL q ja vai p imagem
+        Image img = new ImageIcon(img_url).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        return new ImageIcon(img);
     }
 }
