@@ -1,6 +1,6 @@
 # Projeto Final - Jogo de Xadrez em Java - MATA55
 
-Este repositório reúne o projeto final "Jogo de Xadrez em Java", desenvolvido pelos alunos **Arthur Santos Correia** e **Matheus Dias Queiroz**, como parte da disciplina **MATA55 - Programação Orientada a Objetos**, oferecida no semestre **2025.1** pela **Universidade Federal da Bahia (UFBA)**.
+Este repositório reúne o projeto final **"Jogo de Xadrez em Java"**, desenvolvido pelos alunos **Arthur Santos Correia** e **Matheus Dias Queiroz**, como parte da disciplina **MATA55 - Programação Orientada a Objetos**, oferecida no semestre **2025.1** pela **Universidade Federal da Bahia (UFBA)**.
 
 
 ## ♟️ Sobre o projeto:
