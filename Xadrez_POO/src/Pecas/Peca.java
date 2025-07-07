@@ -15,6 +15,7 @@ public abstract class Peca {
     protected String color;
     protected ImageIcon imagem;
     protected boolean fezpassoduplo=false;
+    protected boolean hasmoved=false;
     public Peca(int row, int col, String type, String color, ImageIcon imagem) {
         this.row = row;
         this.col = col;
@@ -36,6 +37,7 @@ public abstract class Peca {
             JButton botao = tabuleiro.getSquare(casa.x,casa.y);
             botao.setBackground(destaque);
             botao.addActionListener(e ->{
+                hasmoved=true;
                 tabuleiro.changelastmoved(this);
                 tabuleiro.removepeca(row,col);
                 tabuleiro.addpeca(casa.x, casa.y, this);
