@@ -13,28 +13,28 @@ public class ReiPreto extends Peca{
     @Override
     public ArrayList<Casa> getmoves(ChessBoard tabuleiro) {
         ArrayList<Casa> movimentos = new ArrayList<>();
-        if(row < 7 && (tabuleiro.getPeca(row+1,col) == null || tabuleiro.getPeca(row+1,col).getColor().equals("Preto"))) {
+        if(row < 7 && (tabuleiro.getPeca(row+1,col) == null || tabuleiro.getPeca(row+1,col).getColor().equals("Branco"))) {
             movimentos.add(new Casa(row+1, col));
         }
-        if(col < 7 && (tabuleiro.getPeca(row, col+1) == null || tabuleiro.getPeca(row, col+1).getColor().equals("Preto"))) {
+        if(col < 7 && (tabuleiro.getPeca(row, col+1) == null || tabuleiro.getPeca(row, col+1).getColor().equals("Branco"))) {
             movimentos.add(new Casa(row, col+1));
         }
-        if(col > 0 && (tabuleiro.getPeca(row, col-1) == null || tabuleiro.getPeca(row, col-1).getColor().equals("Preto"))) {
+        if(col > 0 && (tabuleiro.getPeca(row, col-1) == null || tabuleiro.getPeca(row, col-1).getColor().equals("Branco"))) {
             movimentos.add(new Casa(row, col-1));
         }
-        if(row > 0 && (tabuleiro.getPeca(row-1, col) == null || tabuleiro.getPeca(row-1, col).getColor().equals("Preto"))) {
+        if(row > 0 && (tabuleiro.getPeca(row-1, col) == null || tabuleiro.getPeca(row-1, col).getColor().equals("Branco"))) {
             movimentos.add(new Casa(row-1, col));
         }
-        if(row > 0 && col < 7 && (tabuleiro.getPeca(row-1, col+1) == null || tabuleiro.getPeca(row-1, col+1).getColor().equals("Preto"))) {
+        if(row > 0 && col < 7 && (tabuleiro.getPeca(row-1, col+1) == null || tabuleiro.getPeca(row-1, col+1).getColor().equals("Branco"))) {
             movimentos.add(new Casa(row-1, col+1));
         }
-        if(row < 7 && col > 0 && (tabuleiro.getPeca(row+1, col-1) == null || tabuleiro.getPeca(row+1, col-1).getColor().equals("Preto"))) {
+        if(row < 7 && col > 0 && (tabuleiro.getPeca(row+1, col-1) == null || tabuleiro.getPeca(row+1, col-1).getColor().equals("Branco"))) {
             movimentos.add(new Casa(row+1, col-1));
         }
-        if(row > 0 && col > 0 && (tabuleiro.getPeca(row-1, col-1) == null || tabuleiro.getPeca(row-1, col-1).getColor().equals("Preto"))) {
+        if(row > 0 && col > 0 && (tabuleiro.getPeca(row-1, col-1) == null || tabuleiro.getPeca(row-1, col-1).getColor().equals("Branco"))) {
             movimentos.add(new Casa(row-1, col-1));
         }
-        if(row < 7 && col < 7 && (tabuleiro.getPeca(row+1, col+1) == null || tabuleiro.getPeca(row+1, col+1).getColor().equals("Preto"))) {
+        if(row < 7 && col < 7 && (tabuleiro.getPeca(row+1, col+1) == null || tabuleiro.getPeca(row+1, col+1).getColor().equals("Branco"))) {
             movimentos.add(new Casa(row+1, col+1));
         }
 

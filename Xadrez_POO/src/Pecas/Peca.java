@@ -45,10 +45,6 @@ public abstract class Peca {
                 col = casa.y;
                 apagarmovimentos(tabuleiro, movimentos);
                 tabuleiro.atualizarIcones();
-                new javax.swing.Timer(200, evt -> {
-                    tabuleiro.stopmoving();
-                    ((javax.swing.Timer) evt.getSource()).stop();
-                }).start();
             });
         }
     }
@@ -69,11 +65,44 @@ public abstract class Peca {
                     if(tabuleiro.getPeca(move.x,move.y ) != null) {
                         if(!tabuleiro.getPeca(move.x,move.y).getColor().equals(tabuleiro.getLastmoved().getColor())) {
                             tabuleiro.getPeca(move.x, move.y).move(tabuleiro);
+                            tabuleiro.changemoving(tabuleiro.getPeca(move.x,move.y));
                         }
                     }
+                }else{
+                    tabuleiro.getcurrentmove().cancelarmovimentos(tabuleiro);
                 }
             });
 
+        }
+    }
+    public void cancelarmovimentos(ChessBoard tabuleiro){
+        ArrayList<Casa> movimentos = getmoves(tabuleiro);
+
+        for(Casa move : movimentos){
+            JButton casa = tabuleiro.getSquare(move.x,move.y);
+            if((move.x + move.y)%2 == 0){
+                casa.setBackground(Color.WHITE);
+            }else{
+                casa.setBackground(Color.DARK_GRAY);
+            }
+            for(ActionListener al : casa.getActionListeners()){
+                casa.removeActionListener(al);
+            }
+            tabuleiro.stopmoving();
+            tabuleiro.changemoving(null);
+            tabuleiro.atualizarIcones();
+            casa.addActionListener(e -> {
+                if(!tabuleiro.ismoving()){
+                    if(tabuleiro.getPeca(move.x,move.y ) != null) {
+                        if(!tabuleiro.getPeca(move.x,move.y).getColor().equals(tabuleiro.getLastmoved().getColor())) {
+                            tabuleiro.getPeca(move.x, move.y).move(tabuleiro);
+                            tabuleiro.changemoving(tabuleiro.getPeca(move.x,move.y));
+                        }
+                    }
+                }else{
+                    tabuleiro.getcurrentmove().cancelarmovimentos(tabuleiro);
+                }
+            });
         }
     }
 }

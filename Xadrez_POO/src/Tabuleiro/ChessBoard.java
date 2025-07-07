@@ -40,6 +40,8 @@ public class ChessBoard extends JFrame {
                                 this.currentmove = pecas[r][c];
                             }
                         }
+                    }else{
+                        getcurrentmove().cancelarmovimentos(this);
                     }
                 });
                 boardPanel.add(square);
