@@ -14,7 +14,7 @@ public abstract class Peca {
     protected String type;
     protected String color;
     protected ImageIcon imagem;
-
+    protected boolean fezpassoduplo=false;
     public Peca(int row, int col, String type, String color, ImageIcon imagem) {
         this.row = row;
         this.col = col;
