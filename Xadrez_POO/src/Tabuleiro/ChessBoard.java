@@ -101,6 +101,12 @@ public class ChessBoard extends JFrame {
             }
         }
     }
+    public void changemoving(Peca peca){
+        this.currentmove=peca;
+    }
+    public Peca getcurrentmove() {
+        return currentmove;
+    }
     public void changelastmoved(Peca lastmoved){
         this.lastmoved = lastmoved;
     }

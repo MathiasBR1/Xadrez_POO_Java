@@ -12,7 +12,15 @@ public class PeaoBranco extends Peca{
     }
     public void move(ChessBoard tabuleiro){
         tabuleiro.startmoving();
+        ArrayList<Casa> movimentos = getmoves(tabuleiro);
+        visualizarmovimentos(tabuleiro, movimentos);;
+    }
+
+    @Override
+    public ArrayList<Casa> getmoves(ChessBoard tabuleiro) {
         ArrayList<Casa> movimentos = new ArrayList<>();
+
+
 
         if(row<7 && tabuleiro.getPeca(row-1, col) == null){
             if(row == 6){
@@ -33,6 +41,6 @@ public class PeaoBranco extends Peca{
             Casa aux = new Casa(row-1,col+1);
             movimentos.add(aux);
         }
-        visualizarmovimentos(tabuleiro, movimentos);;
+        return movimentos;
     }
 }

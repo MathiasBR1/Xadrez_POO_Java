@@ -8,8 +8,9 @@ import java.util.ArrayList;
 
 public class RainhaPreto extends Peca{
     public RainhaPreto(int row, int col, ImageIcon imagem) {super(row,col,"Rainha","Preto",imagem);}
-    public void move(ChessBoard tabuleiro){
-        tabuleiro.startmoving();
+
+    @Override
+    public ArrayList<Casa> getmoves(ChessBoard tabuleiro) {
         ArrayList<Casa> movimentos = new ArrayList<>();
         // implementação dos movimentos da peça Rainha Preta, que se movimenta tanto nas diagonais, quanto nas horizontais e verticais,
         // até encontrar uma peça da mesma cor ou uma peça da cor contrária e realizar a captura.
@@ -147,6 +148,13 @@ public class RainhaPreto extends Peca{
             }
             i += 1;
         }
+        return movimentos;
+    }
+
+    public void move(ChessBoard tabuleiro){
+        tabuleiro.startmoving();
+        ArrayList<Casa> movimentos = getmoves(tabuleiro);
+
         visualizarmovimentos(tabuleiro, movimentos);
     }
 }

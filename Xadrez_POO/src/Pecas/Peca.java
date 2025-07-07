@@ -29,6 +29,7 @@ public abstract class Peca {
     public ImageIcon getImagem() {return this.imagem;}
 
     public abstract void move(ChessBoard tabuleiro);
+    public abstract ArrayList<Casa> getmoves(ChessBoard tabuleiro);
     protected void visualizarmovimentos(ChessBoard tabuleiro, ArrayList<Casa> movimentos){
         Color destaque = new Color(204, 204, 0);
         for (Casa casa : movimentos){
@@ -49,7 +50,7 @@ public abstract class Peca {
             });
         }
     }
-    protected void apagarmovimentos(ChessBoard tabuleiro, ArrayList<Casa> movimentos){
+    public void apagarmovimentos(ChessBoard tabuleiro, ArrayList<Casa> movimentos){
         for(Casa move : movimentos){
             JButton casa = tabuleiro.getSquare(move.x,move.y);
             if ((move.x + move.y) % 2 == 0) {
