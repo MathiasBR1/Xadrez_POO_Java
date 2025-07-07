@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import Pecas.*;
+
+import Tabuleiro.ChessBoard;
+
 public class Main {
 
     public static void  adicionapeca(int row, int col, ImageIcon icon, ChessBoard board) {

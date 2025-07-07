@@ -1,6 +1,12 @@
 package Pecas;
-
 import javax.swing.*;
+
+import Tabuleiro.Casa;
+import Tabuleiro.ChessBoard;
+
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public abstract class Peca {
     protected int row;
@@ -22,5 +28,45 @@ public abstract class Peca {
     public String getColor() {return this.color;}
     public ImageIcon getImagem() {return this.imagem;}
 
-    public abstract void move();
+    public abstract void move(ChessBoard tabuleiro);
+    protected void visualizarmovimentos(ChessBoard tabuleiro, ArrayList<Casa> movimentos){
+        Color destaque = new Color(204, 204, 0);
+        for (Casa casa : movimentos){
+            JButton botao = tabuleiro.getSquare(casa.x,casa.y);
+            botao.setBackground(destaque);
+            botao.addActionListener(e ->{
+                tabuleiro.removepeca(row,col);
+                tabuleiro.addpeca(casa.x, casa.y, this);
+                row = casa.x;
+                col = casa.y;
+                apagarmovimentos(tabuleiro, movimentos);
+                tabuleiro.atualizarIcones();
+                new javax.swing.Timer(200, evt -> {
+                    tabuleiro.stopmoving();
+                    ((javax.swing.Timer) evt.getSource()).stop();
+                }).start();
+            });
+        }
+    }
+    protected void apagarmovimentos(ChessBoard tabuleiro, ArrayList<Casa> movimentos){
+        for(Casa move : movimentos){
+            JButton casa = tabuleiro.getSquare(move.x,move.y);
+            if ((move.x + move.y) % 2 == 0) {
+                casa.setBackground(Color.WHITE);
+            } else {
+                casa.setBackground(Color.DARK_GRAY);
+            }
+            for (ActionListener al : casa.getActionListeners()) {
+                casa.removeActionListener(al);
+            }
+            casa.addActionListener(e -> {
+                if(!tabuleiro.ismoving()){
+                    if(tabuleiro.getPeca(move.x,move.y ) != null) {
+                        tabuleiro.getPeca(move.x, move.y).move(tabuleiro);
+
+                    }
+                }
+            });
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package Pecas;
 
+import Tabuleiro.ChessBoard;
+
 import javax.swing.*;
 
 public class TorrePreto extends Peca {
@@ -7,5 +9,5 @@ public class TorrePreto extends Peca {
         super(row, col, "Torre", "Preto", imagem);
     }
 
-    public void move() {}
+    public void move(ChessBoard tabuleiro) {}
 }

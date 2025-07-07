@@ -1,12 +1,15 @@
+package Tabuleiro;
+
 import Pecas.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class ChessBoard extends JFrame {
     private Peca[][] pecas = new Peca[8][8];
     private JButton[][] squares = new JButton[8][8]; // Matriz para armazenar os quadrados
-
+    private boolean ismoving = false;
     public ChessBoard() {
         setTitle("Tabuleiro de Xadrez");
         setSize(900, 900);
@@ -28,9 +31,14 @@ public class ChessBoard extends JFrame {
                 final int r = row;
                 final int c = col;
                 square.addActionListener(e -> {
-                    if(pecas[r][c] != null){
-                        pecas[r][c].move();
+                    if(!ismoving) {
+                        if (pecas[r][c] != null) {
+                            pecas[r][c].move(this);
+
+                        }
                     }
+
+
                 });
                 boardPanel.add(square);
                 squares[row][col] = square; // Armazena na matriz
@@ -79,7 +87,7 @@ public class ChessBoard extends JFrame {
             pecas[6][col] = new PeaoBranco(6, col, peaoBranco);
         }
     }
-    private void atualizarIcones() {
+    public void atualizarIcones() {
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
                 if (pecas[row][col] != null) {
@@ -95,9 +103,27 @@ public class ChessBoard extends JFrame {
     public JButton getSquare(int row, int col) {
         return squares[row][col];
     }
+    public Peca getPeca(int row, int col) {
+        return pecas[row][col];
+    }
+    public void removepeca(int row, int col) {
+        pecas[row][col] = null;
+    }
+    public void addpeca(int row, int col, Peca peca) {
+        pecas[row][col] = peca;
+    }
     public static ImageIcon loadScaledIcon(String path, int width, int height) {
         URL img_url = ChessBoard.class.getResource("/Images/" + path); //metodo para pegar a /Images/ + path (so o nome da peca) e transforma em URL q ja vai p imagem
         Image img = new ImageIcon(img_url).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(img);
+    }
+    public void startmoving(){
+        this.ismoving = true;
+    }
+    public void stopmoving() {
+        this.ismoving = false;
+    }
+    public boolean ismoving() {
+        return ismoving;
     }
 }
