@@ -10,6 +10,8 @@ public class ChessBoard extends JFrame {
     private Peca[][] pecas = new Peca[8][8];
     private JButton[][] squares = new JButton[8][8]; // Matriz para armazenar os quadrados
     private boolean ismoving = false;
+    private Peca lastmoved;
+    private Peca currentmove=null;
     public ChessBoard() {
         setTitle("Tabuleiro de Xadrez");
         setSize(900, 900);
@@ -33,12 +35,12 @@ public class ChessBoard extends JFrame {
                 square.addActionListener(e -> {
                     if(!ismoving) {
                         if (pecas[r][c] != null) {
-                            pecas[r][c].move(this);
-
+                            if(!pecas[r][c].getColor().equals(lastmoved.getColor())) {
+                                pecas[r][c].move(this);
+                                this.currentmove = pecas[r][c];
+                            }
                         }
                     }
-
-
                 });
                 boardPanel.add(square);
                 squares[row][col] = square; // Armazena na matriz
@@ -47,6 +49,7 @@ public class ChessBoard extends JFrame {
         }
         inicializarPecas();
         atualizarIcones();
+        this.lastmoved=pecas[0][4];
         add(boardPanel);
     }
      private void inicializarPecas() { //metodo loadScaledIcon n busca em src mas sim no out/production ... logo so colocar o nome da imagem
@@ -98,7 +101,12 @@ public class ChessBoard extends JFrame {
             }
         }
     }
-
+    public void changelastmoved(Peca lastmoved){
+        this.lastmoved = lastmoved;
+    }
+    public Peca getLastmoved(){
+        return this.lastmoved;
+    }
         // Método para acessar um quadrado
     public JButton getSquare(int row, int col) {
         return squares[row][col];

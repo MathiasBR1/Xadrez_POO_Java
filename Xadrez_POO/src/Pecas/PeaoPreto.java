@@ -10,16 +10,19 @@ import java.util.ArrayList;
 public class PeaoPreto extends Peca{
     public PeaoPreto(int row, int col,ImageIcon imagem) {super(row,col,"Peao","Preto",imagem);}
     public void move(ChessBoard tabuleiro){
-
         tabuleiro.startmoving();
+        ArrayList<Casa> movimentos = getmoves(tabuleiro);
+        visualizarmovimentos(tabuleiro, movimentos);
+    }
+    public ArrayList<Casa> getmoves(ChessBoard tabuleiro){
         ArrayList<Casa> movimentos = new ArrayList<>();
-        if(row == 1){
-            if( tabuleiro.getPeca(row+2, col) == null){
-                Casa aux = new Casa(row+2,col);
-                movimentos.add(aux);
-            }
-        }
         if(row<7 && tabuleiro.getPeca(row+1, col) == null){
+            if(row == 1){
+                if( tabuleiro.getPeca(row+2, col) == null){
+                    Casa aux = new Casa(row+2,col);
+                    movimentos.add(aux);
+                }
+            }
             Casa aux = new Casa(row+1,col);
             movimentos.add(aux);
         }
@@ -31,9 +34,7 @@ public class PeaoPreto extends Peca{
             Casa aux = new Casa(row+1,col+1);
             movimentos.add(aux);
         }
-        visualizarmovimentos(tabuleiro, movimentos);
-
-
+        return movimentos;
     }
 
 

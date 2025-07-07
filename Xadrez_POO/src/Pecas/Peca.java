@@ -35,6 +35,7 @@ public abstract class Peca {
             JButton botao = tabuleiro.getSquare(casa.x,casa.y);
             botao.setBackground(destaque);
             botao.addActionListener(e ->{
+                tabuleiro.changelastmoved(this);
                 tabuleiro.removepeca(row,col);
                 tabuleiro.addpeca(casa.x, casa.y, this);
                 row = casa.x;
@@ -59,14 +60,17 @@ public abstract class Peca {
             for (ActionListener al : casa.getActionListeners()) {
                 casa.removeActionListener(al);
             }
+
             casa.addActionListener(e -> {
                 if(!tabuleiro.ismoving()){
                     if(tabuleiro.getPeca(move.x,move.y ) != null) {
-                        tabuleiro.getPeca(move.x, move.y).move(tabuleiro);
-
+                        if(!tabuleiro.getPeca(move.x,move.y).getColor().equals(tabuleiro.getLastmoved().getColor())) {
+                            tabuleiro.getPeca(move.x, move.y).move(tabuleiro);
+                        }
                     }
                 }
             });
+
         }
     }
 }
