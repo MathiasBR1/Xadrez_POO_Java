@@ -12,14 +12,16 @@ public class CavaloPreto extends Peca {
     }
 
     public void move(ChessBoard tabuleiro) {
+        ArrayList<Casa> movimentos = getMovimentosLegais(tabuleiro);
+        if (movimentos.isEmpty()) {
+            return;
+        }
         tabuleiro.startmoving();
-        ArrayList<Casa> movimentos = getmoves(tabuleiro);
-
         visualizarmovimentos(tabuleiro, movimentos);
     }
 
     @Override
-    public ArrayList<Casa> getmoves(ChessBoard tabuleiro) {
+    public ArrayList<Casa> gerarMovimentos(ChessBoard tabuleiro) {
         ArrayList<Casa> movimentos = new ArrayList<>();
         // implementação dos movimentos da peça Cavalo Preto - movimentos sempre em "L".
         if (row > 1 && col > 0) {
