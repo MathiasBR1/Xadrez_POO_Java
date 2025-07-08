@@ -11,7 +11,7 @@ public class ReiPreto extends Peca{
     public ReiPreto(int row, int col, ImageIcon imagem) {super(row,col,"Rei","Preto",imagem);}
 
     @Override
-    public ArrayList<Casa> getmoves(ChessBoard tabuleiro) {
+    public ArrayList<Casa> gerarMovimentos(ChessBoard tabuleiro) {
         ArrayList<Casa> movimentos = new ArrayList<>();
         if(row < 7 && (tabuleiro.getPeca(row+1,col) == null || tabuleiro.getPeca(row+1,col).getColor().equals("Branco"))) {
             movimentos.add(new Casa(row+1, col));
@@ -91,14 +91,18 @@ public class ReiPreto extends Peca{
                 tabuleiro.atualizarIcones();
                 new javax.swing.Timer(200, evt -> {
                     tabuleiro.stopmoving();
+                    tabuleiro.verificarfimdejogo();
                     ((javax.swing.Timer) evt.getSource()).stop();
                 }).start();
             });
         }
     }
     public void move(ChessBoard tabuleiro){
+        ArrayList<Casa> movimentos = getMovimentosLegais(tabuleiro);
+        if (movimentos.isEmpty()) {
+            return;
+        }
         tabuleiro.startmoving();
-        ArrayList<Casa> movimentos = getmoves(tabuleiro);
         visualizarmovimentos(tabuleiro, movimentos);
     }
 }
