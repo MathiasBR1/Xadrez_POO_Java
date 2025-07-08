@@ -12,7 +12,7 @@ public class TorreBranco extends Peca {
     }
 
     @Override
-    public ArrayList<Casa> getmoves(ChessBoard tabuleiro) {
+    public ArrayList<Casa> gerarMovimentos(ChessBoard tabuleiro) {
         ArrayList<Casa> movimentos = new ArrayList<>();
         // implementação dos movimentos da peça Torre Branca - enquanto não houver peça da mesma cor nos seus possíveis movimentos,
         // se movimenta para casas nas direções horizontais e verticais. quando encontra uma peça de cor contrária, para a movimentação para captura.
@@ -83,9 +83,11 @@ public class TorreBranco extends Peca {
     }
 
     public void move(ChessBoard tabuleiro) {
+        ArrayList<Casa> movimentos = getMovimentosLegais(tabuleiro);
+        if (movimentos.isEmpty()) {
+            return;
+        }
         tabuleiro.startmoving();
-        ArrayList<Casa> movimentos = getmoves(tabuleiro);
-
         visualizarmovimentos(tabuleiro, movimentos);
     }
 }
