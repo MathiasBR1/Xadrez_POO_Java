@@ -13,9 +13,12 @@ public class PeaoBranco extends Peca{
         super(row,col,"Peao","Branco",imagem);
     }
     public void move(ChessBoard tabuleiro){
+        ArrayList<Casa> movimentos = getMovimentosLegais(tabuleiro);
+        if (movimentos.isEmpty()) {
+            return;
+        }
         tabuleiro.startmoving();
-        ArrayList<Casa> movimentos = getmoves(tabuleiro);
-        visualizarmovimentos(tabuleiro, movimentos);;
+        visualizarmovimentos(tabuleiro, movimentos);
     }
     @Override
     protected void visualizarmovimentos(ChessBoard tabuleiro, ArrayList<Casa> movimentos) {
@@ -42,13 +45,14 @@ public class PeaoBranco extends Peca{
                 tabuleiro.atualizarIcones();
                 new javax.swing.Timer(200, evt -> {
                     tabuleiro.stopmoving();
+                    tabuleiro.verificarfimdejogo();
                     ((javax.swing.Timer) evt.getSource()).stop();
                 }).start();
             });
         }
     }
     @Override
-    public ArrayList<Casa> getmoves(ChessBoard tabuleiro) {
+    public ArrayList<Casa> gerarMovimentos(ChessBoard tabuleiro) {
         ArrayList<Casa> movimentos = new ArrayList<>();
 
         if(row == 3){
