@@ -25,12 +25,17 @@ public abstract class Peca {
     }
     public int getRow() {return this.row;}
     public int getCol() {return this.col;}
+    public void setRow(int row) {this.row = row;}
+    public void setCol(int col) {this.col = col;}
     public String getType() {return this.type;}
     public String getColor() {return this.color;}
     public ImageIcon getImagem() {return this.imagem;}
 
+    public boolean getHasMoved() {return this.hasmoved;}
+    public void setHasMoved(boolean hasmoved) {this.hasmoved = hasmoved;}
+
     public abstract void move(ChessBoard tabuleiro);
-    public abstract ArrayList<Casa> getmoves(ChessBoard tabuleiro);
+    public abstract ArrayList<Casa> gerarMovimentos(ChessBoard tabuleiro);
     protected void visualizarmovimentos(ChessBoard tabuleiro, ArrayList<Casa> movimentos){
         Color destaque = new Color(204, 204, 0);
         for (Casa casa : movimentos){
@@ -45,6 +50,7 @@ public abstract class Peca {
                 col = casa.y;
                 apagarmovimentos(tabuleiro, movimentos);
                 tabuleiro.atualizarIcones();
+                tabuleiro.verificarfimdejogo();
             });
         }
     }
@@ -76,7 +82,7 @@ public abstract class Peca {
         }
     }
     public void cancelarmovimentos(ChessBoard tabuleiro){
-        ArrayList<Casa> movimentos = getmoves(tabuleiro);
+        ArrayList<Casa> movimentos = getMovimentosLegais(tabuleiro);
 
         for(Casa move : movimentos){
             JButton casa = tabuleiro.getSquare(move.x,move.y);
@@ -104,5 +110,31 @@ public abstract class Peca {
                 }
             });
         }
+    }
+
+    public final ArrayList<Casa> getMovimentosLegais(ChessBoard tabuleiro) {
+        ArrayList<Casa> movimentosCandidatos = this.gerarMovimentos(tabuleiro);
+        ArrayList<Casa> movimentosLegais = new ArrayList<>();
+        String minhaCor = this.getColor();
+        int originalRow = this.getRow();
+        int originalCol = this.getCol();
+
+        for (Casa destino : movimentosCandidatos) {
+            Peca pecaCapturada = tabuleiro.getPeca(destino.x, destino.y);
+            tabuleiro.addpeca(destino.x, destino.y, this);
+            tabuleiro.addpeca(originalRow, originalCol, null);
+            this.setRow(destino.x);
+            this.setCol(destino.y);
+            boolean isLegal = !tabuleiro.reiemcheque(minhaCor);
+            tabuleiro.addpeca(originalRow, originalCol, this);
+            tabuleiro.addpeca(destino.x, destino.y, pecaCapturada);
+            this.setRow(originalRow);
+            this.setCol(originalCol);
+            if (isLegal) {
+                movimentosLegais.add(destino);
+            }
+        }
+
+        return movimentosLegais;
     }
 }
