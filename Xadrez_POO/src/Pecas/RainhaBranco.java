@@ -12,7 +12,7 @@ public class RainhaBranco extends Peca {
     }
 
     @Override
-    public ArrayList<Casa> getmoves(ChessBoard tabuleiro) {
+    public ArrayList<Casa> gerarMovimentos(ChessBoard tabuleiro) {
         ArrayList<Casa> movimentos = new ArrayList<>();
         // implementação dos movimentos da peça Rainha Branca, que se movimenta tanto nas diagonais,
         // quanto nas horizontais e verticais, até encontrar uma peça da mesma cor ou uma peça da cor contrária e realizar a captura.
@@ -154,9 +154,11 @@ public class RainhaBranco extends Peca {
     }
 
     public void move(ChessBoard tabuleiro) {
+        ArrayList<Casa> movimentos = getMovimentosLegais(tabuleiro);
+        if (movimentos.isEmpty()) {
+            return;
+        }
         tabuleiro.startmoving();
-        ArrayList<Casa> movimentos = getmoves(tabuleiro);
-
         visualizarmovimentos(tabuleiro, movimentos);
     }
 }
