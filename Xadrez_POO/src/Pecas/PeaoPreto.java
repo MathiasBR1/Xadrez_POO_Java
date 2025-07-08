@@ -4,17 +4,19 @@ import Tabuleiro.ChessBoard;
 import Tabuleiro.Casa;
 import javax.swing.*;
 import java.awt.Color;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class PeaoPreto extends Peca{
     public PeaoPreto(int row, int col,ImageIcon imagem) {super(row,col,"Peao","Preto",imagem);}
     public void move(ChessBoard tabuleiro){
+        ArrayList<Casa> movimentos = getMovimentosLegais(tabuleiro);
+        if (movimentos.isEmpty()) {
+            return;
+        }
         tabuleiro.startmoving();
-        ArrayList<Casa> movimentos = getmoves(tabuleiro);
         visualizarmovimentos(tabuleiro, movimentos);
     }
-    public ArrayList<Casa> getmoves(ChessBoard tabuleiro){
+    public ArrayList<Casa> gerarMovimentos(ChessBoard tabuleiro){
         ArrayList<Casa> movimentos = new ArrayList<>();
 
         if(row == 4){
@@ -76,6 +78,7 @@ public class PeaoPreto extends Peca{
                 tabuleiro.atualizarIcones();
                 new javax.swing.Timer(200, evt -> {
                     tabuleiro.stopmoving();
+                    tabuleiro.verificarfimdejogo();
                     ((javax.swing.Timer) evt.getSource()).stop();
                 }).start();
             });
