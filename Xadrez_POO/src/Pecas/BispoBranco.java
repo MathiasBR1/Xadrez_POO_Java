@@ -12,7 +12,7 @@ public class BispoBranco extends Peca {
     }
 
     @Override
-    public ArrayList<Casa> getmoves(ChessBoard tabuleiro) {
+    public ArrayList<Casa> gerarMovimentos(ChessBoard tabuleiro) {
         ArrayList<Casa> movimentos = new ArrayList<>();
         // implementação dos movimentos da peça Bispo Branco - movimentos sempre nas diagonais até encontrar uma peça da mesma cor (para de movimentar até aquela casa) ou de uma peça da cor contrária (para de movimentar para realizar a captura).
         int i = row - 1;
@@ -90,9 +90,11 @@ public class BispoBranco extends Peca {
     }
 
     public void move(ChessBoard tabuleiro) {
+        ArrayList<Casa> movimentos = getMovimentosLegais(tabuleiro);
+        if (movimentos.isEmpty()) {
+            return;
+        }
         tabuleiro.startmoving();
-        ArrayList<Casa> movimentos = getmoves(tabuleiro);
-
         visualizarmovimentos(tabuleiro, movimentos);
     }
 }
