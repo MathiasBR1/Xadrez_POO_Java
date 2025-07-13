@@ -12,9 +12,11 @@ Este projeto consiste em um jogo de xadrez, implementado em Java com o uso de in
   - Roque;
   - En passant;
 - Interface gráfica intuitiva com visualização do tabuleiro e peças;
+
 ![Tela do Tabuleiro](inicio.png)
 - Verificação de xeque e xeque-mate;
   - Finalização da partida em caso de xeque-mate;
+
 ![Tela do Xeque-Mate](xequemate.png)
 
 ## 📚 Sobre a disciplina:
