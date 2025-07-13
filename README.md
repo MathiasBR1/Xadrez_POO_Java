@@ -9,7 +9,7 @@ Este projeto consiste em um jogo de xadrez, implementado em Java com o uso de in
 
 - Movimento completo de todas as peças (rei, dama, torre, bispo, cavalo e peão);
 - Regras especiais implementadas, como:
-  - Roque (curto e longo);
+  - Roque;
   - En passant;
 - Verificação de xeque e xeque-mate;
 - Finalização da partida em caso de xeque-mate;
