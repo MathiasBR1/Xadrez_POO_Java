@@ -5,7 +5,15 @@ Este repositório reúne o projeto final **"Jogo de Xadrez em Java"**, desenvolv
 
 ## ♟️ Sobre o projeto:
 
-----
+Este projeto consiste em um jogo de xadrez, implementado em Java com o uso de interfaces gráficas via `Swing`. O jogo permite uma partida entre dois jogadores locais, respeitando as regras oficiais do xadrez tradicional:
+
+- Movimento completo de todas as peças (rei, dama, torre, bispo, cavalo e peão);
+- Regras especiais implementadas, como:
+  - Roque (curto e longo);
+  - En passant;
+- Verificação de xeque e xeque-mate;
+- Finalização da partida em caso de xeque-mate;
+- Interface gráfica intuitiva com visualização do tabuleiro e peças;
 
 
 ## 📚 Sobre a disciplina:
