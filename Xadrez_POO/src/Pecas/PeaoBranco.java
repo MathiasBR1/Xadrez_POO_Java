@@ -41,6 +41,13 @@ public class PeaoBranco extends Peca{
                 tabuleiro.addpeca(casa.x, casa.y, this);
                 row = casa.x;
                 col = casa.y;
+                
+                if (row == 0) {
+                    ImageIcon rainhaBranca = loadScaledIcon("White_Queen.png", 100, 100);
+                    tabuleiro.removepeca(row, col);
+                    tabuleiro.addpeca(row, col, new RainhaBranco(row, col, rainhaBranca));
+                }
+
                 apagarmovimentos(tabuleiro, movimentos);
                 tabuleiro.atualizarIcones();
                 new javax.swing.Timer(200, evt -> {
