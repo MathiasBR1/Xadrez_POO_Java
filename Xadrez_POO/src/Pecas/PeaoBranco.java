@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static Tabuleiro.ChessBoard.loadScaledIcon;
+
 public class PeaoBranco extends Peca{
 
     public PeaoBranco(int row, int col, ImageIcon imagem) {
