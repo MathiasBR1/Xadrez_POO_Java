@@ -11,6 +11,7 @@ Este projeto consiste em um jogo de xadrez, implementado em Java com o uso de in
 - Regras especiais implementadas, como:
   - Roque;
   - En passant;
+  - Promoção de peão para rainha;
 - Interface gráfica intuitiva com visualização do tabuleiro e peças;
 
 ![Tela do Tabuleiro](inicio.png)
