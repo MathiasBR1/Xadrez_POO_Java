@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import static Tabuleiro.ChessBoard.loadScaledIcon;
+
 public class PeaoPreto extends Peca{
     public PeaoPreto(int row, int col,ImageIcon imagem) {super(row,col,"Peao","Preto",imagem);}
     public void move(ChessBoard tabuleiro){
